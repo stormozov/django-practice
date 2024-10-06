@@ -1,0 +1,114 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+}
+
+h1 {
+    font-size: 48px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 36px;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.header {
+    background-color: #f0f0f0;
+    padding: 20px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.pages__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+
+.pages__item {
+    width: 100%;
+}
+.pages__item a {
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%;
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header_wrapper a {
+    font-family: 'Nunito', sans-serif;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.workdir__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+}
+
+.workdir__item {
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+.time__wrapper {
+    width: 100%;
+    height: 80vh;
+    background-color: #FFD09B;
+    border-radius: 5px;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+    align-items: center;
+    place-content: center;
+    padding: 20px;
+    margin: 20px 0;
+}
+
+.time {
+    font-size: calc(20px + 2vw);
+    font-weight: 800;
+    text-align: center;
+    color: #A66E38;
+}

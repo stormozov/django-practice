@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {{ page_title }} </title>
+    <link rel="stylesheet" type="text/css" href="{% static 'app/style.css' %}">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header_wrapper">
+                <p> {{ header.title }} </p>
+                <a href="{% url 'previous_page' %}">Вернуться на главную страницу</a>
+                <a
+                    href="{{ header.author_link }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                > {{ header.author }} </a>
+            </div>
+        </div>
+    </header>
+    <main class="main" id="main">
+        <div class="container">
+            <div class="workdir">
+                <h1> Содержимое рабочей директории: </h1>
+                <ul class="workdir__list">
+                    {% for file in files %}
+                        <li class="workdir__item"> {{ file }} </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
