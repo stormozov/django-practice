@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    color: #333;
+}
+
+.main {
+    padding: 100px;
+}
+
+.recipes__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 5px;
+    margin-top: 24px;
+}
+
+.recipes__item {
+    display: inline-block;
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.recipes__item p {
+    text-align: center;
+}
+
+.form_container {
+    margin-top: 48px;
+}
+
+.form_container input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #dddddd;
+    outline: none;
+}
+
+.form_container button {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    outline: none;
+    background-color: #4bade6;
+    color: #ffffff;
+    cursor: pointer;
+}

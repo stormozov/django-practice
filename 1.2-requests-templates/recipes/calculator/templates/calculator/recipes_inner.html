@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Рецепт {{ recipe_title }} </title>
+    <!--  Connect fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--  Connect CSS code  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/style.css' %}">
+</head>
+<body>
+    <main class="main" id="main">
+        <div class="container">
+            <div class="recipes">
+                {% if recipe_ingredients.items %}
+                    <h1> Рецепт {{ recipe_title.title }} </h1>
+                    <p> Количество порций: {{ portion_amount }} </p>
+                    <ul class="recipes__list">
+                        {% for ingredient, amount in recipe_ingredients.items %}
+                            <li class="recipes__item">
+                                <p> {{ ingredient }}: {{ amount }} </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p> {{ recipe_ingredients }} </p>
+                {% endif %}
+                <div class="form_container">
+                    <label>
+                        Количество порций:
+                        <input
+                                type="number"
+                                name="servings"
+                                id="servings-input"
+                                value="1"
+                                min="1"
+                                minlength="1">
+                    </label>
+                    <button id="update-button">Обновить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{% static 'js/input_params.js' %}"></script>
+</body>
+</html>
