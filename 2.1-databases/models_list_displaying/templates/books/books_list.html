@@ -11,6 +11,7 @@
         <!-- Заголовок: Конец -->
         <!-- Книги: Начало -->
         <div class="row">
+            {% if books %}
             {% for book in books %}
             <div class="book col-md-4">
                 <h3> {{ book.name }} </h3>
@@ -25,6 +26,11 @@
                 </p>
             </div>
             {% endfor %}
+            {% else %}
+                <div class="book col-md-12 text-center">
+                    <p> Книги для показа отсутствуют :( </p>
+                </div>
+            {% endif %}
         </div>
         <!-- Книги: Конец -->
         {% if previous_date or next_date %}

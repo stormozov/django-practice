@@ -20,7 +20,7 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'thn+&t-%s0=7!zo_d1ovp*(b%p&$0uoxp&7b$xeukov_i-oe5#'
+SECRET_KEY = os.getenv('django_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
