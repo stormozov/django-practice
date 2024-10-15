@@ -1,0 +1,53 @@
+ {% extends "base.html" %}
+{% load static %}
+
+{% block title %} Каталог книг {% endblock %}
+{% block content %}
+    <div class="container">
+        <!-- Заголовок: Начало -->
+        <div class="header">
+            <h1><a href="/books"> Каталог </a></h1>
+        </div>
+        <!-- Заголовок: Конец -->
+        <!-- Книги: Начало -->
+        <div class="row">
+            {% for book in books %}
+            <div class="book col-md-4">
+                <h3> {{ book.name }} </h3>
+                <p> Автор: {{ book.author }} </p>
+                <p> 
+                    Дата публикации:
+                    {% if book.slug %}
+                    <a href="{{ book.slug }}"> {{ book.pub_date }} </a>
+                    {% else %}
+                    {{ book.pub_date }}
+                    {% endif %}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Книги: Конец -->
+        {% if previous_date or next_date %}
+        <!-- Пагинация: Начало -->
+        <div class="row">
+            <div class="pagination">
+                <div class="col-md-12">
+                    {% if previous_date %}
+                    <a href="{% url 'books_details' previous_date %}"
+                       class="pagination-link">
+                        &#8249; Предыдущая дата 
+                    </a>
+                    {% endif %}
+                    {% if next_date %}
+                    <a href="{% url 'books_details' next_date %}"
+                       class="pagination-link">
+                        Следующая дата &#8250;
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- Пагинация: Конец -->
+        {% endif %}
+    </div>
+{% endblock %}
