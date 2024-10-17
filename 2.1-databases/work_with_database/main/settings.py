@@ -20,12 +20,15 @@ load_dotenv()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0cir6)b-3&nij^mfa%7&)7e(i(eaiy8at3cgzen3*!3+1)p)0c'
+SECRET_KEY = os.getenv('django_secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
 
 # Application definition
 
@@ -126,3 +129,10 @@ STATICFILES_DIRS = [
 PHONES_CSV = os.path.join(BASE_DIR, 'phones.csv')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CACHES
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}

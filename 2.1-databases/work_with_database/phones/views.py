@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.core.cache import cache
+from django.shortcuts import get_object_or_404, redirect, render
 
 from phones.models import Phone
 from phones.utils.utils import get_sort_key
@@ -30,10 +31,15 @@ def show_catalog(request):
     """
     template = 'catalog.html'
     sort_by = request.GET.get('sort')
-    phones = Phone.objects.order_by(get_sort_key(sort_by))
-    context = {'phones': phones}
 
-    return render(request, template, context)
+    # Проверяем, есть ли в кэше сортированный список телефонов
+    phones = cache.get('sorted_phones_%s' % sort_by)
+    if phones is None:
+        # Если нет, получаем список телефонов из базы данных и кэшируем его
+        phones = Phone.objects.order_by(get_sort_key(sort_by))
+        cache.set('sorted_phones_%s' % sort_by, phones, timeout=300)
+
+    return render(request, template, {'phones': phones})
 
 
 def show_product(request, slug: str):
@@ -45,8 +51,15 @@ def show_product(request, slug: str):
 
     Returns:
         django.http.response.HttpResponse: Ответ на запрос.
+        django.shortcuts.get_object_or_404: Ошибка 404, если телефон не найден.
     """
     template = 'product.html'
-    context = {'phone': Phone.objects.get(slug=slug)}
 
-    return render(request, template, context)
+    # Проверяем, есть ли в кэше информация о телефоне
+    phone = cache.get('phone_%s' % slug)
+    if phone is None:
+        # Если нет, получаем информацию о телефоне из базы данных и кэшируем ее
+        phone = get_object_or_404(Phone, slug=slug)
+        cache.set('phone_%s' % slug, phone, timeout=300)
+
+    return render(request, template, {'phone': phone})
