@@ -1,0 +1,35 @@
+/*!
+ * Start Bootstrap - 3 Col Portfolio (https://startbootstrap.com/template-overviews/3-col-portfolio)
+ * Copyright 2013-2018 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-3-col-portfolio/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 84px;
+  padding-bottom: 84px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 86px;
+    padding-bottom: 86px;
+  }
+}
+
+.list-group {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30px;
+}
+
+.list-group li {
+    padding: 30px;
+    margin: 0;
+    border: 1px solid #eee;
+    flex-grow: 1;
+    flex-basis: 0;
+}
