@@ -1,0 +1,50 @@
+{% extends "articles/../base.html" %}
+
+{% load static %}
+
+{% block title %} Новости {% endblock %}
+
+{% block content %}
+  <div class="row">
+    {% if articles %}
+      {% for article in articles %}
+        <div class="col-lg-4 col-sm-6 portfolio-item">
+          <div class="card h-100">
+            <!-- Если статья имеет основный тег, то добавляем айди тега в 
+            адрес страницы. Если не имеет, то не добавляем айди тега и формируем 
+            адрес страницы без тега -->
+            <a href="{% if article.sorted_scopes %}tag/{{ article.sorted_scopes.0.tag.id }}/{% endif %}{{ article.id }}">
+              <img class="card-img-top" 
+                   src="{% get_media_prefix %}{{ article.image }}" 
+                   alt="{{ article.title }}">
+            </a>
+            <div class="card-body">
+              <h4 class="card-title">
+                <a href=tag/{{ article.sorted_scopes.0.tag.id }}/{{ article.id }}>
+                  {{ article.title }}
+                </a>
+              </h4>
+              <p class="card-text">{{ article.text }}</p>
+              {% if article.sorted_scopes %}
+              <!-- Выводим список тегов для статьи, если они есть. -->
+              <ul class="card-badge-list">
+                {% for scope in article.sorted_scopes %}
+                <li class="card-badge-list-item">
+                  <a href="tag/{{ scope.tag.id }}" 
+                     class="badge {% if scope.is_main %}badge-primary{% else %}badge-secondary{% endif %}"
+                  >
+                    {{ scope.tag.name }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <p> Доступных для просмотра статей нет. </p>
+    {% endif %}
+  </div>
+{% endblock %}
